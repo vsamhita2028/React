@@ -1,41 +1,47 @@
-import React,{Component} from "react";
-import {Card, CardTitle, CardText, CardImg, CardImgOverlay,CardBody} from "reactstrap";
+import React from "react";
+import {Card, CardTitle, CardText, CardImg,CardBody} from "reactstrap";
 import moment from 'moment/moment.js'
 
-class DishDetail extends Component {
-    constructor(props){
-        super(props);
-       
+
+function RenderComments({comments}){
+    if(comments!=null){
+        const m= comments.map((com)=>{
+            const l=com.date
+            return (
+              <div>
+                  
+                  <ul className="list-unstyled">
+                      <li><p>{com.comment}</p>
+                      <p>--{com.author}, {moment(l).format('MMMM Do YYYY')}</p>
+                      </li>
+                  </ul>
+              </div>
+          );
+        });
+        return (
+            <div>
+                <h4>Comments</h4>
+                <div>{m}</div>
+            </div>
+        );
+
     }
-    renderComment(arr){
-        if(arr!=null){
-            const m= arr.map((com)=>{
-                const l=com.date
-                
-              return (
-                  <div>
-                      <ul className="list-unstyled">
-                          <li><p>{com.comment}</p>
-                          <p>--{com.author}, {moment(l).format('MMMM Do YYYY')}</p>
-                          </li>
-                      </ul>
-                  </div>
-              );
-            });
-            return m;
-        }
-        else{
-            return(
-                <div></div>
-            );
-        }
+    else{
+        return(
+            <div></div>
+        )
     }
     
-    
-    check(selectedD){
+
+}           
+    function Check({selectedD}){
         if(selectedD!=null){
+            
             return(
-                this.renderComment(selectedD.comments) 
+                <div>
+                    <RenderComments comments={selectedD.comments} />
+                </div>
+                
             );
                 
         }
@@ -46,7 +52,7 @@ class DishDetail extends Component {
         }
     }
 
-    renderDish(dish){
+    function RenderDish({dish}){
         if(dish!=null){
             return(
                 <Card >
@@ -66,23 +72,23 @@ class DishDetail extends Component {
     }
     
     
-    render(){
+    const  DishDetail = (props) =>{
         
         return(
             <div className="container">
                 <div className="row">
                     <div className="col-12 col-md-5 m-1">
-                        {this.renderDish(this.props.d)}
+                        <RenderDish dish={props.d}/>
                         
                     </div>
                     <div className="col-12 col-md-5 m-1">
-                        <h4>Comments</h4>
-                        {this.check(this.props.d)}
+                        
+                        <Check selectedD={props.d}/> 
                         
                     </div>
                 </div>
             </div>
         );
     }
-}
+
 export default DishDetail;
