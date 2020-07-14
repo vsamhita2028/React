@@ -41,10 +41,9 @@ class Contact extends Component{
         event.preventDefault();     
     }
     handleBlur=(field)=>(evt)=>{
-      //this.setState( {...this.state.touched, touched : {[field] : true}});
+      
       this.setState({touched : {...this.state.touched, [field] : true}})
-      //console.log("touched ",this.state.touched);
-      //console.log("whole object",this.state);
+      
     }
     
     validate(firstname,lastname,telnum,email,message){
@@ -55,7 +54,7 @@ class Contact extends Component{
             email: '',
             message:''
         }
-        console.log("whole object 2",this.state);
+        
         
         if(this.state.touched.firstname && firstname.length <=3 ){
             errors.firstname="Should not be less than or equal to 3 characters"
