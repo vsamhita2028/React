@@ -5,55 +5,7 @@ import {BreadcrumbItem, Breadcrumb} from "reactstrap";
 import {Link} from "react-router-dom";
 import { render } from "@testing-library/react";
 import { LocalForm, Control, Errors } from "react-redux-form";
- /*
- <LocalForm onSubmit={this.handleSubmit}>
-                                <Row className="form-group">
-                                    <Col sm="12">
-                                        <Label htmlFor="ratings">Ratings</Label>
-                                        <Control.select model=".rating" name="rating" className="form-control">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                        </Control.select>
-                                    </Col>
-                                </Row>
-                                <Row className="form-group">
-                                    <Col sm="12">
-                                        <Label htmlFor="name">Your Name</Label>
-                                        <Control.text modle=".fullname" className="form-control" name="fullname" />
-                                    </Col>
-                                </Row>
-                                <Row className="form-group">
-                                    <Col sm="12">
-                                    <Label htmlFor=".comment">Comment</Label>
-                                    <Control.text modle=".comment" className="form-control" name="comment" row="6" />                                        
-                                    </Col>
-                                </Row>
-                                <Row className="form-group">
-                                    <Col sm="12">
-                                        <Button color="primary">Submit</Button>
-                                    </Col>
-                                </Row>
 
-
-
-                                 validators={{
-                                        required : (val) => val && val.length,
-                                        maxLength : (val) => !(val) || (val.length <= 15),
-                                        minLength : (val) => val && (val.length >= 2)
-                                    }}/>
-                                    <Errors
-                                    className="text-danger"
-                                    show="touched"
-                                    messages={{
-                                        required : "Name is required",
-                                        maxLength : "Must be less then 15 characters",
-                                        minLength : "Must be greater than 2 characters"
-                                    }} 
-                            </LocalForm>
-  */
     class DishDetail extends Component {
         constructor(props){
             super(props);
