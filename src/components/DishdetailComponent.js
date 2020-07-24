@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import {Loading} from "./LoadingComponent"
 import { LocalForm, Control, Errors } from "react-redux-form";
 import {baseUrl} from "../shared/baseUrl";
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 class CommentForm extends Component{
     constructor(props){
@@ -82,24 +83,35 @@ class CommentForm extends Component{
 function RenderComments({comments, postComment, dishId}) {
 
     if(comments!=null){
+        
         const m= comments.map((com)=>{
-            const l=com.date
             return (
+                <Fade in>
               <div>
                   <ul className="list-unstyled">
                       <li><p>{com.comment}</p>
-                      <p>--{com.author}, {moment(l).format('MMMM Do YYYY')}</p>
+                      <p>--{com.author}, {moment(com.date).format('MMMM Do YYYY')}</p>
                       </li>
                   </ul>
+                 
               </div>
+              </Fade>
+              
           );
+         
         });
+        
+      
         return (
+           
             <div>
+                
                 <h4>Comments</h4>
-                <div>{m}</div>
+                <div><Stagger in>{m}</Stagger></div>
                 <CommentForm dishId={dishId} postComment={postComment} />
+                    
             </div>
+            
         );
 
     }
@@ -113,6 +125,11 @@ function RenderComments({comments, postComment, dishId}) {
 function RenderDish({dish}){
     if(dish!=null){
         return(
+            <FadeTransform
+                in
+                transformProps={{
+                    exitTransform: 'scale(0.5) translateY(-50%)'
+                }}>
             <Card >
             <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name}></CardImg>
             <CardBody>
@@ -120,6 +137,7 @@ function RenderDish({dish}){
             <CardText>{dish.description}</CardText>
             </CardBody>
         </Card>
+        </FadeTransform>
             
         );   
     }
